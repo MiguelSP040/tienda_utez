@@ -6,7 +6,7 @@ import { isEmpty } from "lodash";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../config/firebaseConnection";
 
-export default function Login({ navigation }) {
+export default function Login({ onLogin, navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState({ email: "", password: "" });
@@ -33,9 +33,6 @@ export default function Login({ navigation }) {
       }
   
       signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          navigation.navigate("Tienda");
-        })
         .catch((error) => {
           Alert.alert("Error de Autenticación", error.message);
         });
@@ -123,6 +120,6 @@ export default function Login({ navigation }) {
       marginBottom: 10,
     },
     button: {
-      marginTop: 10,
+      marginTop: 10
     },
   });
